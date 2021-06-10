@@ -5,7 +5,7 @@
   "main": "src/server/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-start": "ts-node src/server/index.ts 8000 dev",
+    "dev-start": "ts-node-dev --respawn src/server/index.ts 8000 dev",
     "s-dev-start": "nodemon src/server/index.ts 8000 dev",
     "fix-check": "ts-standard",
     "fix": "ts-standard --fix"
@@ -17,9 +17,11 @@
     "axios": "^0.21.1",
     "bkm-utils": "^1.0.0",
     "compression": "^1.7.4",
+    "connect-livereload": "^0.6.1",
     "eslint": "^7.28.0",
     "express": "^4.17.1",
     "jszip": "^3.6.0",
+    "livereload": "^0.9.3",
     "pixi.js": "^6.0.4",
     "reload": "^3.1.1",
     "request": "^2.88.2",
@@ -37,6 +39,7 @@
     "@types/compression": "^1.7.0",
     "@types/copy-webpack-plugin": "^8.0.0",
     "@types/express": "^4.17.12",
+    "@types/livereload": "^0.9.0",
     "@types/request": "^2.48.5",
     "@types/uuid": "^8.3.0",
     "@types/webpack-dev-middleware": "^4.3.0",
