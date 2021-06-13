@@ -1,16 +1,13 @@
 {
-  "name": "test",
+  "name": "plants-vs-zombies-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "public/index.js",
+  "main": "public/server/index.js",
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js && tsc --project tsconfig.server.json",
+    "start": "node public/server/index.js",
+    "dev-start": "ts-node src/server/index.ts 8000 dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-prod-start": "ts-node src/server/index.ts",
-    "start": "node ./public/index.js",
-    "dev-start": "ts-node-dev --respawn src/server/index.ts 8000 dev",
-    "build-start": "npm run build && npm run prod-start",
-    "s-dev-start": "nodemon src/server/index.ts 8000 dev",
     "fix-check": "ts-standard",
     "fix": "ts-standard --fix"
   },

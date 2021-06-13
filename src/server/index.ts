@@ -3,9 +3,8 @@ import express, { Express } from 'express'
 import * as http from 'http'
 import path from 'path'
 import { Compiler } from 'webpack'
-// import * as livereload from 'livereload'
 
-const PORT: string | number =/*  process.env.PORT ||  */8000
+const PORT: string | number = process.env.PORT || 8000
 class Server {
   public app: Express
   public server: http.Server
@@ -16,21 +15,6 @@ class Server {
     this.app.use(express.json())
     this.app.use(express.text())
     this.app.use(compression())
-
-    // const liveReloadServer = livereload.createServer({
-    //   exts: ['ts', 'js']
-    //   // port: 8000
-    // });
-    // const connectLivereload = require("connect-livereload");
-    // liveReloadServer.watch(path.join(__dirname, '../../src'))
-    // liveReloadServer.watch(path.join(__dirname, '../../public'))
-    // liveReloadServer.server.once("connection", () => {
-    //   setTimeout(() => {
-    //     liveReloadServer.refresh("/");
-    //   }, 100);
-    // });
-
-    // this.app.use(connectLivereload());
   }
 
   public async init (): Promise<void> {
@@ -45,10 +29,7 @@ class Server {
         })
       )
     } else {
-      // this.app.use(express.static(path.join(__dirname, '../../public')))
-      this.app.get('/', (req, res) => {
-        res.render('../../public/index.html')
-      })
+      this.app.use(express.static(path.join(__dirname, '../../public')))
     }
 
     this.server.listen(PORT, () => {
