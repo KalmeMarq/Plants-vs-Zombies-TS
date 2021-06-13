@@ -1,5 +1,5 @@
 const path = require('path')
-const CopyPlugin = ('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const sass = require('node-sass')
 
@@ -30,7 +30,7 @@ module.exports = {
       hash: true,
       minify: false
     }),
-    new CopyPlugin({
+    new CopyWebpackPlugin({
       patterns: [
         {
           from: path.join(__dirname, '/assets'),
