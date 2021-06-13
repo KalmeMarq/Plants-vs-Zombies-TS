@@ -3,10 +3,9 @@ import express, { Express } from 'express'
 import * as http from 'http'
 import path from 'path'
 import { Compiler } from 'webpack'
-import * as livereload from 'livereload'
+// import * as livereload from 'livereload'
 
-const PORT: string | number = process.argv[2] === undefined ? 8000 : process.argv[2]
-
+const PORT: string | number =/*  process.env.PORT ||  */8000
 class Server {
   public app: Express
   public server: http.Server
@@ -18,24 +17,24 @@ class Server {
     this.app.use(express.text())
     this.app.use(compression())
 
-    const liveReloadServer = livereload.createServer({
-      exts: ['ts', 'js']
-      // port: 8000
-    });
-    const connectLivereload = require("connect-livereload");
+    // const liveReloadServer = livereload.createServer({
+    //   exts: ['ts', 'js']
+    //   // port: 8000
+    // });
+    // const connectLivereload = require("connect-livereload");
     // liveReloadServer.watch(path.join(__dirname, '../../src'))
     // liveReloadServer.watch(path.join(__dirname, '../../public'))
-    liveReloadServer.server.once("connection", () => {
-      setTimeout(() => {
-        liveReloadServer.refresh("/");
-      }, 100);
-    });
+    // liveReloadServer.server.once("connection", () => {
+    //   setTimeout(() => {
+    //     liveReloadServer.refresh("/");
+    //   }, 100);
+    // });
 
-    this.app.use(connectLivereload());
+    // this.app.use(connectLivereload());
   }
 
   public async init (): Promise<void> {
-    if (process.argv[3] === 'dev') {
+    if(process.argv[3] === 'dev') {
       const webpackDevMiddleware = require('webpack-dev-middleware')
       const config = require('../../webpack.dev.js')
       const webpack = require('webpack')
@@ -50,7 +49,7 @@ class Server {
     }
 
     this.server.listen(PORT, () => {
-      console.log(`[server]: Server is running at http://localhost:${PORT}`)
+      console.log(`[server]: Server is running at ${PORT}`)
     })
   }
 }

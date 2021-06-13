@@ -2,10 +2,14 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server/index.ts",
+  "main": "public/index.js",
   "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "start": "ts-node src/server/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prod-start": "ts-node src/server/index.ts",
     "dev-start": "ts-node-dev --respawn src/server/index.ts 8000 dev",
+    "build-start": "npm run build && npm run prod-start",
     "s-dev-start": "nodemon src/server/index.ts 8000 dev",
     "fix-check": "ts-standard",
     "fix": "ts-standard --fix"
@@ -18,6 +22,7 @@
     "bkm-utils": "^1.0.0",
     "compression": "^1.7.4",
     "connect-livereload": "^0.6.1",
+    "dotenv": "^10.0.0",
     "eslint": "^7.28.0",
     "express": "^4.17.1",
     "jszip": "^3.6.0",
