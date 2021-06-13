@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import sass from 'node-sass'
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.ts'),
+  entry: path.resolve(__dirname, './src/client/index.ts'),
   module: {
     rules: [
       {

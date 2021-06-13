@@ -23,7 +23,7 @@
     "jszip": "^3.6.0",
     "livereload": "^0.9.3",
     "pixi.js": "^6.0.4",
-    "reload": "^3.1.1",
+    "reload": "^3.2.0",
     "request": "^2.88.2",
     "stats.js": "^0.17.0",
     "typescript-optional": "^2.0.1",
