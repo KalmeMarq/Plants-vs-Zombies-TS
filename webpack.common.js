@@ -1,7 +1,7 @@
-import path from 'path'
-import CopyPlugin from 'copy-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import sass from 'node-sass'
+const path = require('path')
+const CopyPlugin = ('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const sass = require('node-sass')
 
 module.exports = {
   entry: path.resolve(__dirname, './src/client/index.ts'),
