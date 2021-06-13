@@ -45,7 +45,10 @@ class Server {
         })
       )
     } else {
-      this.app.use(express.static(path.join(__dirname, '../../public')))
+      // this.app.use(express.static(path.join(__dirname, '../../public')))
+      this.app.get('/', (req, res) => {
+        res.render('../../public/index.html')
+      })
     }
 
     this.server.listen(PORT, () => {

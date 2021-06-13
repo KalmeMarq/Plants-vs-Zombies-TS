@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-prod-start": "ts-node src/server/index.ts",
-    "start": "node public/index.js",
+    "start": "node ./public/index.js",
     "dev-start": "ts-node-dev --respawn src/server/index.ts 8000 dev",
     "build-start": "npm run build && npm run prod-start",
     "s-dev-start": "nodemon src/server/index.ts 8000 dev",
