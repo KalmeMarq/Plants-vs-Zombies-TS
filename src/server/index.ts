@@ -31,7 +31,7 @@ class Server {
     } else {
       this.app.use(express.static(path.join(__dirname, '../../public')))
     }
-
+    
     this.server.listen(PORT, () => {
       console.log(`[server]: Server is running at ${PORT}`)
     })
@@ -40,3 +40,10 @@ class Server {
 
 const server = new Server(PORT)
 server.init().catch()
+
+server.app.get('/', (req, res) => {
+})
+
+server.app.get('*', (req, res) => {
+  res.redirect('/')
+})
