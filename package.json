@@ -1,73 +1,86 @@
 {
   "name": "plants-vs-zombies-ts",
   "version": "1.0.0",
-  "description": "",
-  "main": "public/server/index.js",
+  "description": "Recreation of plants vz zombies.",
+  "main": "./dist/main.js",
+  "author": "KalmeMarq",
+  "license": "GNU",
   "scripts": {
-    "build": "webpack --config webpack.prod.js && tsc --project tsconfig.server.json",
-    "start": "node public/server/index.js",
-    "dev-start": "ts-node src/server/index.ts 8000 dev",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "fix-check": "ts-standard",
-    "fix": "ts-standard --fix"
+    "build": "ts-node ./helpers/build.ts && electron-builder --publish=never",
+    "build:dir": "ts-node ./helpers/build.ts && electron-builder --dir",
+    "build:clean": "cross-env BUILD_TARGET=clean ts-node ./helpers/build.ts",
+    "pack": "npm run pack:main && npm run pack:preload && npm run pack:renderer",
+    "pack:main": "cross-env NODE_ENV=production webpack --progress --color --config ./helpers/configs/webpack.main.config.ts",
+    "pack:preload": "cross-env NODE_ENV=production webpack --progress --color --config ./helpers/configs/webpack.preload.config.ts",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --color --config ./helpers/configs/webpack.renderer.config.ts",
+    "dev": "ts-node ./helpers/dev-runner.ts",
+    "start": "electron ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "bkm-utils": "^1.0.0",
-    "compression": "^1.7.4",
-    "connect-livereload": "^0.6.1",
-    "dotenv": "^10.0.0",
-    "eslint": "^7.28.0",
-    "express": "^4.17.1",
-    "jszip": "^3.6.0",
-    "livereload": "^0.9.3",
-    "pixi.js": "^6.0.4",
-    "reload": "^3.2.0",
-    "request": "^2.88.2",
-    "stats.js": "^0.17.0",
-    "typescript-optional": "^2.0.1",
-    "uuid": "^8.3.2"
-  },
-  "ts-standard": {
-    "project": "./tsconfig.json",
-    "ignore": [
-      "src/server/*.ts"
-    ]
+  "build": {
+    "productName": "PlantsVsZombiesTS",
+    "appId": "kalmemarq.pvz.pvzts",
+    "artifactName": "PlantsVsZombiesTS-${version}.${ext}",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/**/*"
+    ],
+    "win": {
+      "icon": "build/icons/icon-16x16.ico",
+      "target": [
+        {
+          "target": "nsis-web",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "build/icons"
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    }
   },
   "devDependencies": {
-    "@types/compression": "^1.7.0",
     "@types/copy-webpack-plugin": "^8.0.0",
-    "@types/express": "^4.17.12",
-    "@types/livereload": "^0.9.0",
-    "@types/request": "^2.48.5",
-    "@types/uuid": "^8.3.0",
+    "@types/discord-rich-presence": "0.0.0",
+    "@types/node-sass": "^4.11.1",
     "@types/webpack-dev-middleware": "^4.3.0",
     "@types/webpack-merge": "^5.0.0",
-    "@typescript-eslint/parser": "^4.26.1",
+    "babili-webpack-plugin": "^0.1.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
-    "copy-webpack-plugin": "^8.1.1",
-    "fibers": "^5.0.0",
-    "file-loader": "^6.2.0",
+    "copy-webpack-plugin": "^9.0.0",
+    "cross-env": "^7.0.3",
+    "del": "^6.0.0",
+    "electron": "^13.1.2",
+    "electron-builder": "^22.11.7",
+    "electron-debug": "^3.2.0",
     "html-webpack-plugin": "^5.3.1",
-    "node-sass": "^5.0.0",
-    "nodemon": "^2.0.7",
+    "multispinner": "^0.2.1",
+    "node-sass": "^6.0.0",
     "sass": "^1.34.1",
     "sass-loader": "^11.1.1",
-    "standard": "^16.0.3",
     "ts-loader": "^9.2.3",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.6",
     "ts-standard": "^10.0.0",
-    "typescript": "^4.3.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-middleware": "^4.3.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^5.8.0",
     "webpack-pwa-manifest": "^4.3.0",
     "workbox-webpack-plugin": "^6.1.5",
     "worker-loader": "^3.0.8"
+  },
+  "dependencies": {
+    "discord-rich-presence": "0.0.8",
+    "pixi.js": "^6.0.4",
+    "typescript": "^4.3.4"
   }
 }

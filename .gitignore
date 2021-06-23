@@ -1,6 +1,10 @@
-node_modules/
-package-lock.json
-.vscode
 .DS_Store
-trash
+node_modules
+dist
+build/*
 .vs
+.vscode
+
+!build/icons
+
+package-lock.json

@@ -22,14 +22,13 @@ body {
   user-select: none;
   height: 100vh;
   overflow: hidden;
-  background: rgb(68, 68, 68);
+  background: rgb(0, 0, 0);
 }
 
-canvas {
-  top: 0;
-  left: 0;
-  position: absolute;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-  text-rendering: geometricPrecision;
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  place-items: center;
+  place-content: center;
 }
