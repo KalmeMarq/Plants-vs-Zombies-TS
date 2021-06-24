@@ -1,5 +1,6 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import sass from 'node-sass'
 import path from 'path'
 import webpack from 'webpack'
 
@@ -42,6 +43,21 @@ let rendererConfig = {
 
 if(process.env.NODE_ENV !== 'production') {
 	rendererConfig.plugins.push(
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.join(__dirname, '../../src/web/style.scss'),
+          to: './style.css',
+          transform (content: any, path: any) {
+            const result = sass.renderSync({
+              file: path
+            })
+  
+            return result.css.toString()
+          }
+        }
+      ]
+    }),
 		new webpack.DefinePlugin({
 			__static: `"${path
 				.join(__dirname, '../../assets')
@@ -57,7 +73,7 @@ if(process.env.NODE_ENV === 'production') {
         {
           from: path.join(__dirname, '../../assets'),
           to: path.join(__dirname, '../../dist/assets')
-        }/* ,
+        },
         {
           from: path.join(__dirname, '../../src/web/style.scss'),
           to: './style.css',
@@ -65,10 +81,9 @@ if(process.env.NODE_ENV === 'production') {
             const result = sass.renderSync({
               file: path
             })
-  
             return result.css.toString()
           }
-        } */
+        }
       ]
     }),
 		new webpack.DefinePlugin({
